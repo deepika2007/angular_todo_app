@@ -303,11 +303,30 @@
   }
 </style>
 
-<div>
-  <h1>Todo collector</h1>
-  <div>
-    <input />
-    <button>Add Todo</button>
+<div class="todo_app_container">
+  <h1>Todo App</h1>
+  <div class="input_container">
+    <input type="text" name="todo" class="todo_input" #todoText />
+    <button class="todo_add_button" (click)="addTodo(todoText)">Add Todo</button>
+  </div>
+  <div class="todo_description">
+    <div class="todo_info_container" *ngFor="let item of todos" :key="index">
+      <div class="checkbox_with_text">
+        <input type="checkbox" class="checkbox_input" />
+        <p class="todo_task">{{item.text}}</p>
+      </div>
+      <button class="delete_icon"><i class="fa fa-trash-o" style="font-size:23px;color:white"></i></button>
+    </div>
+  </div>
+  <div class="todo_count_container">
+    <p class="total_text"><b>Total count : </b>10</p>
+    <!-- <select class="todo_pagination">
+      <option>10</option>
+      <option>20</option>
+      <option>30</option>
+      <option>40</option>
+      <option>50</option>
+    </select> -->
   </div>
 
 </div>
