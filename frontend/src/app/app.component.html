@@ -309,24 +309,29 @@
     <input type="text" name="todo" class="todo_input" #todoText />
     <button class="todo_add_button" (click)="addTodo(todoText)">Add Todo</button>
   </div>
-  <div class="todo_description">
+  <div class="todo_description" *ngIf="todos && todos.length > 0">
     <div class="todo_info_container" *ngFor="let item of todos" :key="index">
       <div class="checkbox_with_text">
         <input type="checkbox" class="checkbox_input" />
-        <p class="todo_task">{{item.text}}</p>
+        <p class="todo_task">{{item?.title}}</p>
       </div>
-      <button class="delete_icon"><i class="fa fa-trash-o" style="font-size:23px;color:white"></i></button>
+      <div class="actions_section">
+        <button class="delete_icon" (click)="setReminder(item._id)">
+          <i class="fa fa-bell-o" aria-hidden="true" style="font-size:15px;color:white"></i>
+        </button>
+        <button class="delete_icon" (click)="deleteTodo(item._id)">
+          <i class="fa fa-trash-o" style="font-size:15px;color:white"></i>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="todo_count_container">
-    <p class="total_text"><b>Total count : </b>10</p>
-    <!-- <select class="todo_pagination">
-      <option>10</option>
-      <option>20</option>
-      <option>30</option>
-      <option>40</option>
-      <option>50</option>
-    </select> -->
+
+  <div *ngIf="todos && todos.length === 0">
+    <p class="no_todo_found">No todos available.</p>
+  </div>
+
+  <div class="todo_count_container" *ngIf="todos && todos.length > 0">
+    <p class="total_text"><b>Total count : </b>{{todos.length}}</p>
   </div>
 
 </div>
