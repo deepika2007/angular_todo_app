@@ -21,8 +21,8 @@ export class AppService {
     return this.http.get<any>(`${this.apiUrl}/todos/${id}`);
   }
 
-  updateTodo(id: string, title: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/todos/${id}`, { title });
+  updateTodo(id: string, todo: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/todos/${id}`, todo);
   }
 
   deleteTodo(id: string): Observable<any> {

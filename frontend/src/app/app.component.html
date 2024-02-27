@@ -312,7 +312,7 @@
   <div class="todo_description" *ngIf="todos && todos.length > 0">
     <div class="todo_info_container" *ngFor="let item of todos" :key="index">
       <div class="checkbox_with_text">
-        <input type="checkbox" class="checkbox_input" />
+        <input type="checkbox" class="checkbox_input" [checked]="item.completed" (click)="updateStatus(item)" />
         <p class="todo_task">{{item?.title}}</p>
       </div>
       <div class="actions_section">
