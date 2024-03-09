@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AppService } from './app.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,21 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private apiModule: AppService) {}
+  constructor(private apiModule: AppService, public dialog: MatDialog) {}
 
   todoText: string = '';
+  reminder = {} as {
+    email: string;
+    date: string;
+    time: string;
+    id: string;
+  };
   todos = [] as { title: string; _id: string; completed: boolean }[];
 
   @Output()
   todoTextChanges: EventEmitter<string> = new EventEmitter<string>();
+
+  // API calling
 
   getTodos() {
     this.apiModule.getTodos().subscribe((data) => {
@@ -54,6 +64,10 @@ export class AppComponent {
   }
 
   setReminder(id: string) {
-    console.log('----id----', id);
+    const dialogRef = this.dialog.open(DialogComponent);
+  }
+
+  submitReminder(values: any) {
+    console.log('-====-=-=-=-=-=-=-=-=-=-=------------============', values);
   }
 }
