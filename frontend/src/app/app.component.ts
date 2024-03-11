@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AppService } from './app.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogData } from './dialog/dialog.interface';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,6 @@ export class AppComponent {
   constructor(private apiModule: AppService, public dialog: MatDialog) {}
 
   todoText: string = '';
-  reminder = {} as {
-    email: string;
-    date: string;
-    time: string;
-    id: string;
-  };
   todos = [] as { title: string; _id: string; completed: boolean }[];
 
   @Output()
@@ -64,7 +59,10 @@ export class AppComponent {
   }
 
   setReminder(id: string) {
-    const dialogRef = this.dialog.open(DialogComponent);
+    console.log('comp-------------------------', id);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { email: '', time: '', date: '', id } as DialogData,
+    });
   }
 
   submitReminder(values: any) {

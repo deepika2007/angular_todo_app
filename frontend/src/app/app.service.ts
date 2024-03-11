@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DialogData } from './dialog/dialog.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,9 @@ export class AppService {
 
   deleteTodo(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/todos/${id}`);
+  }
+
+  todoReminder(payload: DialogData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/reminder`, payload);
   }
 }

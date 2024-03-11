@@ -1,11 +1,12 @@
 <div class="dialog_container">
-  <form (ngSubmit)="submitReminder()">
+  <form [formGroup]="dialogForm" (ngSubmit)="submitReminder()">
     <h1 mat-dialog-title>Add reminder</h1>
     <div mat-dialog-content>
-      <input type="email" name="email" placeholder="Enter Reminder Email" class="dialog_email_input" required />
+      <input type="email" formControlName="email" placeholder="Enter Reminder Email" [(ngModel)]="data.email"
+        class="dialog_email_input" required />
       <div class="date_time_container">
-        <input type="date" name="date" class="dialog_email_input" required />
-        <input type="time" name="time" class="dialog_email_input" required />
+        <input type="date" formControlName="date" class="dialog_email_input" [(ngModel)]="data.time" required />
+        <input type="time" formControlName="time" class="dialog_email_input" [(ngModel)]="data.date" required />
       </div>
     </div>
     <div mat-dialog-actions class="reminder_actions">
