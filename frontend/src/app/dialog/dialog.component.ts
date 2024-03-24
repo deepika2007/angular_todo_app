@@ -27,13 +27,8 @@ export class DialogComponent {
   }
 
   submitReminder() {
-    console.log(
-      '-====-=-=-=-=-=-=-=-=-=-=------------============',
-      this.dialogForm
-    );
     if (this.dialogForm.valid) {
       const { value } = this.dialogForm;
-      console.log('-----value------', value);
       this.apiModule.todoReminder(value).subscribe((data) => {
         console.log(data);
       });
